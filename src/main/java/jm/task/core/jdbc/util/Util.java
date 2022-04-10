@@ -10,7 +10,6 @@ public class Util {
 
     public static Connection getConnection() {
         Connection connection = null;
-
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.printf("Соединение установлено");
