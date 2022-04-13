@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private final Connection connection = Util.getConnection();
+   // private final Connection connection = Util.getConnection();
 
     public UserDaoJDBCImpl() {
 
     }
 
     public void createUsersTable() {
+        Connection connection = Util.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -32,13 +33,16 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
+
                 }
             }
         }
     }
 
     public void dropUsersTable() {
+        Connection connection = Util.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -51,6 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
                 }
             }
@@ -58,6 +63,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
+        Connection connection = Util.getConnection();
         String save = "INSERT INTO users(name,lastname,age) VALUES(?,?,?)";
         PreparedStatement statement = null;
         try {
@@ -73,6 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
                 }
             }
@@ -80,6 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
+        Connection connection = Util.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -92,6 +100,7 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
                 }
             }
@@ -99,6 +108,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
+        Connection connection = Util.getConnection();
         List<User> allUsers = new ArrayList<>();
         User user = new User();
         Statement statement = null;
@@ -126,6 +136,7 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
                 }
             }
@@ -134,6 +145,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
+        Connection connection = Util.getConnection();
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -146,6 +158,7 @@ public class UserDaoJDBCImpl implements UserDao {
             if (statement != null) {
                 try {
                     statement.close();
+                    connection.close();
                 } catch (SQLException e) {
                 }
             }
